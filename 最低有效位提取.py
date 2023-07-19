@@ -18,9 +18,9 @@ bbb_list = ""
 file = open("rgb.bpg","wb")
 for j in range(20):
     for i in range(width):
-        rrr_list += bin(rrr.getpixel((i ,j))[0])[2]
-        ggg_list += bin(ggg.getpixel((i ,j))[1])[2]
-        bbb_list += bin(bbb.getpixel((i ,j))[2])[2]
+        rrr_list += bin(rrr.getpixel((i ,j))[0])[2].zfill(8)[7]
+        ggg_list += bin(ggg.getpixel((i ,j))[1])[2].zfill(8)[7]
+        bbb_list += bin(bbb.getpixel((i ,j))[2])[2].zfill(8)[7]
 print(rrr_list)
 
 for i in range(0,len(rrr_list),8):
