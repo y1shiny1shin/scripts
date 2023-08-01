@@ -1,0 +1,24 @@
+import base64
+
+def int2Bin(digit):
+	return bin(digit)[2:]	#将索引转成二进制，去掉'0b';
+
+
+def binAsc(string):		#二进制转成ASCII码
+	temp = ''
+	for i in range(int(len(string) / 8)):
+		temp += chr(int(string[i * 8 : i* 8 + 8] , 2))
+	return temp
+
+def readBase64FromFile(filename):
+	Base64Char = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"     #Base64字符集 已按照规范排列
+	result = ''
+	with open(filename ,'r') as f:
+		for data in f.readlines():
+			if data.find('==') > 0:
+				result += int2Bin(Base64Char.index(data[-4]))[-4:]		#根据隐写原理，‘==’情况取等号前最后一个字符转换后取后4位
+			elif data.find('=') > 0:
+				result += int2Bin(Base64Char.index(data[-3]))[-2:]		#根据隐写原理，‘=’情况取等号前最后一个字符转换后取后2位
+	print(binAsc(result))
+
+readBase64FromFile('flag-2.txt')
