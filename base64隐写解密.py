@@ -42,4 +42,4 @@ for i in range(66):
         result += str(two_gap).zfill(4)
     elif data.count("=") == 3:
         result += str(two_gap).zfill(6)
-print(result)
+print("[+] : "result)
